@@ -1,6 +1,20 @@
 version: 2
 jobs:
   build:
+      docker:
+            # specify the version you desire here
+                  - image: circleci/node:7.10
+                  
+                      working_directory: ~/repo
+                      
+                          steps:
+                                - checkout
+                                      - run: yarn test
+                                      notify:
+                                         webhooks:
+                                              - url: https://hooks.glipdemo.com/webhook/undefinedversion: 2
+jobs:
+  build:
     docker:
       # specify the version you desire here
       - image: circleci/node:7.10
