@@ -1,1 +1,222 @@
 
+package definitions.ui.flow.web;
+
+import definitions.base.GlipApp;
+import org.openqa.selenium.JavascriptExecutor;
+
+import java.util.Arrays;
+import java.util.List;
+
+import static kernel.core.selenium.struct.FieldStatus.CheckingStatus.VISIBLE;
+
+/**
+ * The type Git hub flow.
+ */
+public class GitHubFlow {
+    private GlipApp glip;
+
+    /**
+     * Instantiates a new Git hub flow.
+     *
+     * @param glip the glip
+     */
+    public GitHubFlow(GlipApp glip){
+        this.glip=glip;
+    }
+
+
+    /**
+     * Add integration git hub.
+     *
+     * @param conversationName the conversation name
+     * @param gitHubLogin      the git hub login
+     * @param gitHubPassword   the git hub password
+     * @param repository       the repository
+     */
+    public void addIntegrationGitHub(String conversationName, String gitHubLogin, String gitHubPassword, String repository){
+        addIntegrationGitHub(conversationName, gitHubLogin, gitHubPassword, repository, true, Arrays.asList("empty"));
+    }
+
+    /**
+     * Add integration git hub.
+     *
+     * @param conversationName the conversation name
+     * @param viaLeftRail      the via left rail
+     * @param gitHubLogin      the git hub login
+     * @param gitHubPassword   the git hub password
+     * @param repository       the repository
+     */
+    public void addIntegrationGitHub(String conversationName, boolean viaLeftRail, String gitHubLogin, String gitHubPassword, String repository){
+        addIntegrationGitHub(conversationName, viaLeftRail, true, gitHubLogin, gitHubPassword, repository,true, Arrays.asList("empty"));
+    }
+
+    /**
+     * Add integration git hub.
+     *
+     * @param conversationName the conversation name
+     * @param gitHubLogin      the git hub login
+     * @param gitHubPassword   the git hub password
+     * @param repository       the repository
+     * @param allCheckboxes    the all checkboxes
+     * @param checkboxNames    the checkbox names
+     */
+    public void addIntegrationGitHub(String conversationName, String gitHubLogin, String gitHubPassword, String repository, boolean allCheckboxes, List<String> checkboxNames){
+        addIntegrationGitHub(conversationName, true, gitHubLogin, gitHubPassword, repository, allCheckboxes, checkboxNames);
+    }
+
+    /**
+     * Add integration git hub.
+     *
+     * @param conversationName the conversation name
+     * @param oauth            the oauth
+     * @param gitHubLogin      the git hub login
+     * @param gitHubPassword   the git hub password
+     * @param repository       the repository
+     * @param allCheckboxes    the all checkboxes
+     * @param checkboxNames    the checkbox names
+     */
+    public void addIntegrationGitHub(String conversationName, boolean oauth, String gitHubLogin, String gitHubPassword, String repository, boolean allCheckboxes, List<String> checkboxNames){
+        addIntegrationGitHub(conversationName, false, oauth, gitHubLogin, gitHubPassword, repository, allCheckboxes, checkboxNames);
+    }
+
+    /**
+     * Add integration git hub.
+     *
+     * @param conversationName the conversation name
+     * @param viaLeftRail      the via left rail
+     * @param oauth            the oauth
+     * @param gitHubLogin      the git hub login
+     * @param gitHubPassword   the git hub password
+     * @param repository       the repository
+     * @param allCheckboxes    the all checkboxes
+     * @param checkboxNames    the checkbox names
+     */
+    public void addIntegrationGitHub(String conversationName, boolean viaLeftRail, boolean oauth, String gitHubLogin, String gitHubPassword, String repository, boolean allCheckboxes, List<String> checkboxNames){
+        if (!viaLeftRail) {
+            glip.integrationsFlow.addIntegration("github", conversationName);
+        }else {
+            glip.integrationsFlow.addIntegrationViaLeftRail("github", conversationName);
+        }
+        if (oauth){
+            glip.integrationsFlow.configureWithOauth();
+            if (glip.gitHub.getSignInBtn().waitForVisible(5)) {
+                doSignIn(gitHubLogin, gitHubPassword, false);
+            }
+        }
+        if (allCheckboxes){
+            glip.pageIntegrations.getEditIntegrationModal().getChild("checkBox").waitForStatus(VISIBLE);
+            glip.integrationsFlow.clickAllCheckboxes();
+        }else{
+            glip.integrationsFlow.clickCheckboxesByNames(checkboxNames);
+        }
+        glip.pageIntegrations.getEditIntegrationModal().getChild("repository").waitForStatus(VISIBLE);
+        glip.pageIntegrations.getEditIntegrationModal().getChild("repository").set(gitHubLogin.split("@")[0]+"/"+repository);
+        glip.pageIntegrations.getSaveButton().click();
+        glip.paneRightRail.getIntegrationsList().getIntegrationItem("github").getIntegrationStatus().waitForValue("active");
+    }
+
+    /**
+     * Do sign in.
+     *
+     * @param gitHubLogin    the git hub login
+     * @param gitHubPassword the git hub password
+     * @param newWindow      the new window
+     */
+    public void doSignIn(String gitHubLogin, String gitHubPassword, boolean newWindow){
+        if(newWindow) {
+            glip.integrationsFlow.openNewWindowURL("https://github.com/login", "GitHub");
+        }
+        glip.gitHub.setLogin(gitHubLogin);
+        glip.gitHub.setPassword(gitHubPassword);
+        glip.gitHub.getSignInBtn().click();
+    }
+
+    /**
+     * Delete repository.
+     *
+     * @param repName     the rep name
+     * @param gitHubLogin the git hub login
+     */
+    public void deleteRepository(String repName, String gitHubLogin){
+        screen.web.GitHub.GitHub gitHub = glip.gitHub;
+        gitHub.getHomePageBtn().click();
+        gitHub.getRepositoriesList().getItemByName((gitHubLogin.split("@")[0]+"\n/\n"+repName).toLowerCase()).open();
+        gitHub.getRepositorySettingsBtn().click();
+        gitHub.getDeleteRepositoryBtn().click();
+        gitHub.setInputConfirmDelete(repName.replaceFirst(".*?/",""));
+        gitHub.getConfirmDeleteRepositoryBtn().click();
+    }
+
+    /**
+     * Submit new issue.
+     *
+     * @param gitHubLogin the git hub login
+     * @param repName     the rep name
+     * @param issueName   the issue name
+     */
+    public void submitNewIssue(String gitHubLogin, String repName, String issueName){
+        screen.web.GitHub.GitHub gitHub = glip.gitHub;
+        gitHub.getHomePageBtn().click();
+        gitHub.getRepositoriesList().getItemByName((gitHubLogin.split("@")[0]+"\n/\n"+repName).toLowerCase()).open();
+        gitHub.getTabIssues().click();
+        gitHub.getBtnNewIssue().click();
+        gitHub.getIssueTitleInput().waitForStatus(VISIBLE);
+        gitHub.getIssueTitleInput().set(issueName);
+        gitHub.getSubmitNewIssue().click();
+        gitHub.getIssueTitleField().waitForStatus(VISIBLE);
+    }
+
+    /**
+     * Create repository.
+     *
+     * @param repName the rep name
+     */
+    public void createRepository(String repName){
+        screen.web.GitHub.GitHub gitHub = glip.gitHub;
+        gitHub.getHomePageBtn().click();
+        gitHub.getNewRepositoryBtn().click();
+        gitHub.setInputNewRepoName(repName);
+        gitHub.getCreateRepositoryBtn().click();
+    }
+
+    /**
+     * Re create repository.
+     *
+     * @param repName        the rep name
+     * @param gitHubLogin    the git hub login
+     * @param gitHubPassword the git hub password
+     */
+    public void reCreateRepository(String repName, String gitHubLogin, String gitHubPassword){
+        screen.web.GitHub.GitHub gitHub = glip.gitHub;
+        doSignIn(gitHubLogin, gitHubPassword, true);
+        if(gitHub.getRepositoriesList().getAllRepositories().contains((gitHubLogin.split("@")[0]+"\n/\n"+repName).toLowerCase())){
+            deleteRepository(repName, gitHubLogin);
+        }
+        createRepository(repName);
+        submitNewIssue(gitHubLogin, repName, "The first");
+        gitHub.getUserMenuBtn().click();
+        gitHub.getSignOutBtn().click();
+    }
+
+    public void editFile(String gitHubLogin, String gitHubPassword, String repoName, String filePath, String fileContent) throws Exception {
+        screen.web.GitHub.GitHub gitHub = glip.gitHub;
+        doSignIn(gitHubLogin, gitHubPassword, true);
+        gitHub.getRepositoriesList().getItem(0).open();
+        glip.getUI().getBrowser().open("https://github.com/"+gitHubLogin+"/"+repoName+"/edit/master/"+filePath);
+        fileContent.replaceAll("\n","\\\\\r");
+        JavascriptExecutor js = new JavascriptExecutor() {
+            @Override
+            public Object executeScript(String script, Object... args) {
+                return null;
+            }
+
+            @Override
+            public Object executeAsyncScript(String script, Object... args) {
+                return null;
+            }
+        };
+        js.executeScript()
+        gitHub.getCodeInput().set(fileContent);
+        gitHub.getCommitButton().click();
+    }
+}
