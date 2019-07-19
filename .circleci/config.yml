@@ -12,4 +12,4 @@ jobs:
       - run: yarn test
 notify:
    webhooks:
-     - url: https://gca01-t01-gpw01.lab.nordigy.ru/webhook/851715a4-069d-40aa-a89e-976ed70ffcb5
+     - url: https://gca01-t01-gpw01.lab.nordigy.ru/webhook/85cfef13-ef3f-48e5-b4fe-06a436baab12
