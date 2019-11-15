@@ -12,4 +12,4 @@ jobs:
       - run: yarn test
 notify:
    webhooks:
-     - url: https://hooks.glipdemo.com/webhook/14626d7f-94e2-4c36-bb2a-140af3dde267
+     - url: https://hooks.glipdemo.com/webhook/6cb208f6-7a74-4d1f-b592-60867e497c14
