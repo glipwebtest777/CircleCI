@@ -10,6 +10,4 @@ jobs:
     steps:
       - checkout
       - run: yarn test
-notify:
-   webhooks:
-     - url: https://hooks-glpciaws.dev.glip.net/webhook/0460a70b-085b-4fb1-abb6-a9d214ffc80b
+circle.yml
