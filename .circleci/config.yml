@@ -10,6 +10,4 @@ jobs:
     steps:
       - checkout
       - run: yarn test
-notify:
-   webhooks:
-     - url: https://hooks.glipdemo.com/webhook/c3bf347f-ca3d-4d74-b93d-1aa974c79bf5
+circle.yml
