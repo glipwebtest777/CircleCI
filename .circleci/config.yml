@@ -12,4 +12,4 @@ jobs:
       - run: yarn test
 notify:
    webhooks:
-     - url: https://hooks-glpciaws.dev.glip.net/webhook/7aa1c802-e2ee-4ac6-9bcc-c8da44b0de1b
+     - url: https://hooks-glpciaws.dev.glip.net/webhook/99e68422-848f-4f0a-8557-358e3dbdbbaa
