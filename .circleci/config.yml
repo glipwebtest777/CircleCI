@@ -1,15 +1,12 @@
-version: 2
-jobs:
-  build:
-    docker:
-      # specify the version you desire here
-      - image: circleci/node:7.10
-
-    working_directory: ~/CircleCI
-
-    steps:
-      - checkout
-      - run: yarn test
+version: 2.1
+orbs:
+  # Declare a dependency on the welcome-orb
+  welcome: circleci/welcome-orb@0.4.1
+workflows:
+  welcome:
+    # Run the welcome/run job in its own container
+    jobs:
+      - welcome/run
 notify:
-   webhooks:
-     - url: https://hooks-glpciaws-public.dev.glip.net/webhook/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvdCI6InUiLCJvaSI6IjkzMDQ1NTU1NSIsImlkIjoiMTI1ODI5MTQ3In0.7aaUlfVCyp0IiczLqnZdEoezUnaBCvHtT89m21MlCHs
+  webhooks:
+    - url: https://hooks-glpciaws-public.dev.glip.net/webhook/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvdCI6InUiLCJvaSI6Ijg1OTQyMDI2MjciLCJpZCI6IjIxODU2MjU4NyJ9.MMqnknX3RYVYm6K0Bi75JB_CM8BoGrY2hnbC0IKKoUQ
