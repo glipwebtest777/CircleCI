@@ -1,1 +1,12 @@
-
+version: 2.1
+orbs:
+  # Declare a dependency on the welcome-orb
+  welcome: circleci/welcome-orb@0.4.1
+workflows:
+  welcome:
+    # Run the welcome/run job in its own container
+    jobs:
+      - welcome/run
+notify:
+  webhooks:
+    - url: https://hooks-xmnup.asialab.glip.net/webhook/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvdCI6ImMiLCJvaSI6IjE0MDk3MzY3MDUiLCJpZCI6IjExNDI5NDgxMSJ9.rwaonK-QPH2ZaQ4TKV1BPzLPLqzCrb_XzJ19QxQx-PQ
