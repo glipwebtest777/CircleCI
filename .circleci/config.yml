@@ -6,7 +6,6 @@ orbs:
       welcome:
           # Run the welcome/run job in its own container
               jobs:
-                    - welcome/run
                     notify:
                       webhooks:
                           - url: https://hooks-glpciaws-public.dev.glip.net/webhook/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvdCI6ImMiLCJvaSI6IjE1MzI2NTc2NjUiLCJpZCI6IjE4MTg4NzAwMyJ9.URv31_Y9nnfJGh2yXByj3jBnRpbOLWMpVk2LkVJVIuw
