@@ -1,12 +1,3 @@
-version: 2.1
-orbs:
-  # Declare a dependency on the welcome-orb
-  welcome: circleci/welcome-orb@0.4.1
-workflows:
-  welcome:
-    # Run the welcome/run job in its own container
-    jobs:
-      - welcome/run
-notify:
-  webhooks:
-    - url: https://hooks-glpciaws-public.dev.glip.net/webhook/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvdCI6ImMiLCJvaSI6IjE1MzI3MDY4MTciLCJpZCI6IjE4MTk2ODkyMyJ9.nWOH95dVepGhymZvv9Y3w3wKnE7ce3dfRPO_pPLXLws
+jenkins build --skip-stages=e2e
+
+eslint,tsc,ut,it,e2e,jui,storybook.
