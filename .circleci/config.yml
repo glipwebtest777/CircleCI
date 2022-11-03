@@ -1,20 +1,7 @@
-{
-    "activity": "Event triggered",
-        "title": "[Event $ID]($LINK): $EVENT_TITLE",
-            "fields": [
-                    {
-                                "title": "Priority",
-                                            "value": "$PRIORITY"
-                                                    },
-                                                            {
-                                                                        "title": "Alert",
-                                                                                    "value": "$ALERT_STATUS"
-                                                                                            },
-                                                                                                    {
-                                                                                                                "title": "Date",
-                                                                                                                            "value": "$DATE",
-                                                                                                                                        "type": "epochmillisecond"
-                                                                                                                                                }
-                                                                                                                                                      ],
-                                                                                                                                                          "body": "[Metric Image]($SNAPSHOT) *Tags*: $TAGS"
-                                                                                                                                                          }
+notifications:
+  webhooks:
+    urls:
+      - https://hooks.glipdemo.com/webhook/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvdCI6ImMiLCJvaSI6IjkxOTMwOTUxNjkiLCJpZCI6IjgxMzY2MjIzNSJ9.8kRhWGvQ49Trgco4jZ93Pzi299ArkoMXOVDjb3Cf4B0
+    on_success: always # default: always
+    on_failure: always # default: always
+    on_start: always   # default: never
