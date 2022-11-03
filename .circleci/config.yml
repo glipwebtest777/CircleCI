@@ -1,12 +1,20 @@
-version: 2.1
-orbs:
-  # Declare a dependency on the welcome-orb
-  welcome: circleci/welcome-orb@0.4.1
-workflows:
-  welcome:
-    # Run the welcome/run job in its own container
-    jobs:
-      - welcome/run
-notify:
-  webhooks:
-    - url: https://hooks.glipdemo.com/webhook/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvdCI6ImMiLCJvaSI6IjkxOTMxMDMzNjEiLCJpZCI6IjgxMzQ3MzgxOSJ9.q4i-O_RC-YEPgVcy6b-9H3TEZI0Ro5oLAXeMIzQQvyQ
+{
+    "activity": "Event triggered",
+        "title": "[Event $ID]($LINK): $EVENT_TITLE",
+            "fields": [
+                    {
+                                "title": "Priority",
+                                            "value": "$PRIORITY"
+                                                    },
+                                                            {
+                                                                        "title": "Alert",
+                                                                                    "value": "$ALERT_STATUS"
+                                                                                            },
+                                                                                                    {
+                                                                                                                "title": "Date",
+                                                                                                                            "value": "$DATE",
+                                                                                                                                        "type": "epochmillisecond"
+                                                                                                                                                }
+                                                                                                                                                      ],
+                                                                                                                                                          "body": "[Metric Image]($SNAPSHOT) *Tags*: $TAGS"
+                                                                                                                                                          }
