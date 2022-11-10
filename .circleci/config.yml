@@ -1,7 +1,12 @@
-Create trial account on https://www.atlassian.com/software/confluence or can be used account from the Jira suite
-
-Same account can be used for the Jira integration suite if  'Jira Software + Documentation' was created.
-
-In Confluence -> Click on "Settings" icon -> Bottom down and click on “Manage apps” from Left Rail -> "Settings" -> "Enable development mode" -> Apply
-
-Click "Upload app" > Fill URL to the file that was uploaded with payload. The file can be uploaded to Glip Production and copy link to the file (follow the instruction "Set up Confluence" from Integration Details)
+version: 2.1
+orbs:
+  # Declare a dependency on the welcome-orb
+  welcome: circleci/welcome-orb@0.4.1
+workflows:
+  welcome:
+    # Run the welcome/run job in its own container
+    jobs:
+      - welcome/run
+notify:
+  webhooks:
+    - url: https://hooks-glpciaws-public.dev.glip.net/webhook/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvdCI6ImMiLCJvaSI6IjQ1NDk4MzY5IiwiaWQiOiIxNjgxODIwMyJ9.dIarsbdSOr8d4W9qGKLrOGiw3nJ9Rs4cXR-i6dVc7l0
