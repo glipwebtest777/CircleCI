@@ -9,4 +9,4 @@ workflows:
       - welcome/run
 notify:
   webhooks:
-    - url: https://hooks-glpciaws-public.dev.glip.net/webhook/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvdCI6ImMiLCJvaSI6IjI0NjQ4NzQ0OTciLCJpZCI6IjI3ODY4MzY3NSJ9.-qd9CepRBwD5b94wjb9Kd6j3fKNBJAweftYMj1vx8_w
+    - url: https://hooks-glpciaws-public.dev.glip.net/webhook/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvdCI6ImMiLCJvaSI6IjIxNDc0MDk5MjEiLCJpZCI6IjI4NjEyMjAxMSJ9.sbriVUtW8I07e6aJ-laZZ2wrQ2r53eCNMZweF-gRr60
