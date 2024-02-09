@@ -4,7 +4,7 @@ orbs:
   welcome: circleci/welcome-orb@0.4.1
 workflows:
   welcome:
-    # Run the welcome/run job in its own container
+    # Run the welcome/run job in it's own container
     jobs:
       - welcome/run
 notify:
