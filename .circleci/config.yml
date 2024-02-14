@@ -9,4 +9,4 @@ workflows:
       - welcome/run
 notify:
    webhooks:
-     - url: https://hooks.ringcentral.com/webhook/v2/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvdCI6ImMiLCJvaSI6IjQ0NDY2MTc3IiwiaWQiOiIyMzI4NzQ4MDU5In0.ON7380k3K2gT6Cz2SSBySWk_cXmlaXOLRe9BFTx7cS8
+     - url: https://hooks.ringcentral.com/webhook/v2/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvdCI6ImMiLCJvaSI6IjQ0NDY2MTc3IiwiaWQiOiIyMzI4NzU2MjUxIn0.CObrQnU09WTQaCw2s0jGvSgzumcTEww3I2P6pkgcTr4
