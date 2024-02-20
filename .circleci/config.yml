@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  # Declare a dependency on the welcome-orb
+  # Declare a dependency on the welcome-orb@0.4.1
   welcome: circleci/welcome-orb@0.4.1
 workflows:
   welcome:
