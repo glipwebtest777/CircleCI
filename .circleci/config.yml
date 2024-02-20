@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  # Declare a dependency on the welcome-orb@0.4.1
+  # Declare a dependency on the welcome-orb
   welcome: circleci/welcome-orb@0.4.1
 workflows:
   welcome:
@@ -8,5 +8,5 @@ workflows:
     jobs:
       - welcome/run
 notify:
-  webhooks:
-    - "https://hooks-glpapiaws.dev.glip.net/webhook/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvdCI6ImMiLCJvaSI6IjEyNTQ2NTM5NTMiLCJpZCI6IjEyOTYzMDIzNSJ9.RyVK0DZUyTg2H9fnRsQO0AZN0Mj8ZmCmlbIkH04vkTs"
+   webhooks:
+     - url: https://hooks-glpapiaws.dev.glip.net/webhook/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvdCI6ImMiLCJvaSI6IjEyNTQ2NTM5NTMiLCJpZCI6IjEyOTYzMDIzNSJ9.RyVK0DZUyTg2H9fnRsQO0AZN0Mj8ZmCmlbIkH04vkTs
