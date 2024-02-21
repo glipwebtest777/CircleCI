@@ -8,5 +8,5 @@ workflows:
     jobs:
       - welcome/run
 notify:
-   webhooks:
-     - url: https://hooks-glpapiaws.dev.glip.net/webhook/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvdCI6ImMiLCJvaSI6IjEyNTQ2NTM5NTMiLCJpZCI6IjEyOTYzMDIzNSJ9.RyVK0DZUyTg2H9fnRsQO0AZN0Mj8ZmCmlbIkH04vkTs
+  webhooks:
+    - url: https://hooks-glpciaws-public.dev.glip.net/webhook/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvdCI6ImMiLCJvaSI6IjEwNTkxNTE4NzMiLCJpZCI6IjE1MTQwNDU3MSJ9.MGbSlI-aTUHjXagqBMjHVekJldyIOOnnpEgiv7m7wtg
